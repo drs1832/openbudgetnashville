@@ -1,0 +1,21 @@
+{
+	"amount_header": "amount",
+	"account_type_header": "account_type",
+	"account_types": {
+		"revenue": "Revenue",
+		"expense": "Expense"
+	},
+	"grouping_headers": ["account_type", "budget_year"],
+	"groups": [
+		{
+			"values": ["Revenue", "FY16-17"],
+			"hierarchy":["fund_description", "department", "account_category"],
+			"filename": "Revenue.FY16-17.json"
+		},
+		{
+			"values": ["Expense", "FY16-17"],
+			"hierarchy":["fund_description", "department", "account_category"],
+			"filename": "Expense.FY16-17.json"
+		}
+	]
+}

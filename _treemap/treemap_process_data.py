@@ -41,7 +41,7 @@ def _load_csv(filepath):
     reader = csv.reader(open(filepath, 'rU'))
 
     # interperate the first row as the header
-    header = reader.next()
+    header = next(reader) #reader.next()
     header_length = len(header)
 
     for row in reader:

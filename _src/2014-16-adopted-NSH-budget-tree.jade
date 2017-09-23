@@ -1,3 +1,44 @@
+extends templates/tree-template.jade
+
+block title 
+  h1 Detailed Breakdown: 2014-16 Adopted Budget 
+
+block datasource
+  h6
+    | Data source:&nbsp;
+    a(href = "https://data.nashville.gov/browse?category=Budget%2FFinance&q=Metro+Budget&sortBy=relevance") Nashville Open Data Portal
+
+block disqus_config
+  script(type='text/javascript').
+    var disqus_identifier = "2015-17 adopted budget tree";
+
+block datafiles
+  script.
+    var config = {
+      /* set values available in dropdown files */
+      dropdown_values: {
+        "Year": ["FY14-15", "FY15-16", "FY16-17"],
+        "Account": ["Revenue", "Expense"]
+      },
+      /* set the default values */
+      dropdown_choice: {
+        "Year": "FY16-17",
+        "Account": "Expense"
+      },
+      /* create the url to the data file based on the dropdown choices */
+      url: function() {
+        return 'data/tree/Adopted.' + this.dropdown_choice["Account"] + "." + this.dropdown_choice["Year"] + ".json";
+      }
+    };
+
+
+
+
+
+
+
+
+
 .container
   style.
     #treemap{
@@ -37,11 +78,11 @@
     }
   .row
     .intro.col-md-8
-      block title
+      
 
       p Select year and account (revenues or expenses). Click on a fund to see the departments that receive its funding. Click on that department to see its spending or revenue.
 
-      p The <strong>General Fund</strong> — roughly 40% of Nashville's total budget -- is decided by a <a href="/budget-process.html">budget process</a> that includes private and public meetings, surveys, and negotiations. The other 60% of the budget comes from taxes, ballot measures, grants, fees, and other sources.
+      p The <strong>General Fund</strong> — roughly 40% of Oakland's total budget -- is decided by a <a href="/budget-process.html">budget process</a> that includes private and public meetings, surveys, and negotiations. The other 60% of the budget comes from taxes, ballot measures, grants, fees, and other sources.
 
   .row
     .col-sm-12
@@ -54,7 +95,8 @@
   #spacer
   #table(style="margin-bottom: 30px;")
 
-  block datasource
+  
+
 
 
   section#comments
@@ -63,14 +105,11 @@
         h4 Comments
         #disqus_thread
 
-block disqus_config
-  script(type='text/javascript').
-    var disqus_identifier = "oboDefault";
-
 //- DISQUS script
 script(type='text/javascript').
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-  var disqus_shortname = 'openbudgetoakland';
+  var disqus_shortname = 'openbudgetoakland'; // required: replace example with your forum shortname
+  
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -81,6 +120,7 @@ noscript
   | Please enable JavaScript to view the
   a(href='http://disqus.com/?ref_noscript') comments powered by Disqus.
 
+script(src='http://d3js.org/d3.v3.min.js', charset='utf-8')
 script(src='/js/palette.js', charset='utf-8')
 script(src='/js/source.js', charset='utf-8')
 script(src='/js/data.js', charset='utf-8')
@@ -88,10 +128,24 @@ script(src='/js/treemap.js', charset='utf-8')
 script(src='/js/spreadsheet.js', charset='utf-8')
 script(src='/js/tooltip.js', charset='utf-8')
 script(src='/js/budget-treemap.js', charset='utf-8')
-
-block datafiles
-
 script.
+  var config = {
+    /* set values available in dropdown files */
+    dropdown_values: {
+      "Year": ["FY15-16", "FY16-17"],
+      "Account": ["Revenue", "Expense"]
+    },
+    /* set the default values */
+    dropdown_choice: {
+      "Year": "FY16-17",
+      "Account": "Expense"
+    },
+    /* create the url to the data file based on the dropdown choices */
+    url: function() {
+      return 'data/2015-17-adopted-tree/' + this.dropdown_choice["Account"] + "." + this.dropdown_choice["Year"] + ".json";
+    }
+  };
+
   function _hash_normalize(s) {
     return s.toLowerCase().replace(/\s+/g, '');
   }

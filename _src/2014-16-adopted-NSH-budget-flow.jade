@@ -1,0 +1,21 @@
+extends templates/flow-template.jade
+
+block title
+  h2 NASHVILLE Cash Flow: 2014-2016 Fiscal Year Actual Expenses
+
+block datasource
+  h6
+    | Data source:&nbsp;
+    a(href = "https://data.nashville.gov/browse?category=Budget%2FFinance&q=Metro+Budget&sortBy=relevance") Nashville Budget Data
+
+//- block disqus_config
+//-   script(type="text/javascript").
+//-     var disqus_identifier = "2017-19-proposed-budget-flow";
+
+block get_datafiles
+  script(type="text/javascript").
+    var datafiles = [
+      {filename: "FY14-15__adopted-NSH.csv"},
+      {filename: "FY15-16__adopted-NSH.csv"},
+      {filename: "FY16-17__adopted-NSH.csv"},
+    ];

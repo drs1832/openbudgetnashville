@@ -160,13 +160,20 @@ function data_wrangle(dataset, fy) {
     });
     revcats = d3.nest()
         .key(function (d) {
-            return d.account_category;
+            //return d.account_category;
+			return d.department;
+			//return d.bu_description;
         })
-        .sortKeys(function (a, b) {
+        .sortKeys(/*function (a, b) {
             return rev_order.indexOf(a) - rev_order.indexOf(b);
-        })
+        }*/
+		d3.ascending)
         .key(function (d) {
-            if (d.fund_code == "10101") {
+            if (d.fund_code == "10101" || d.fund_code=="18301" || d.fund_code=="35131")
+			//10101 is "General Services District" General fund
+		    //18301 is "Urban Services District" General fund
+			//35131 is Metro Nashville Public Schools General Purpose fund
+			{
                 return "General Fund";
             } else {
                 return "Non-discretionary funds";
@@ -256,11 +263,16 @@ function data_wrangle(dataset, fy) {
             }
             return d.department;
         })
-        .sortKeys(function (a, b) {
+        .sortKeys(/*function (a, b) {
             return exp_order.indexOf(a) - exp_order.indexOf(b);
-        })
+        }*/
+		d3.ascending)
         .key(function (d) {
-            if (d.fund_code == "10101") {
+            if (d.fund_code == "10101" || d.fund_code=="18301" || d.fund_code=="35131")
+			//10101 is "General Services District" General fund
+		    //18301 is "Urban Services District" General fund
+			//35131 is Metro Nashville Public Schools General Purpose fund
+			{
                 return "General Fund";
             } else {
                 return "Non-discretionary funds";
